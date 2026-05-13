@@ -53,7 +53,7 @@ function Starfield({
     if (!starsRef.current) return;
     starsRef.current.rotation.y += delta * speed;
     starsRef.current.rotation.x =
-      Math.sin(state.clock.elapsedTime * 0.08) * 0.1;
+      Math.sin(performance.now() * 0.001 * 0.08) * 0.1;
   });
 
   return (
@@ -82,9 +82,9 @@ function EnergySphere({ motionRef }) {
   const innerShellRef = useRef(null);
   const outerGlowRef = useRef(null);
 
-  useFrame((state) => {
+  useFrame(() => {
     const motion = motionRef.current;
-    const pulse = 1 + Math.sin(state.clock.elapsedTime * 2.2) * 0.015;
+    const pulse = 1 + Math.sin(performance.now() * 0.001 * 2.2) * 0.015;
     const dock = motion.dock;
     const exit = motion.exit;
 

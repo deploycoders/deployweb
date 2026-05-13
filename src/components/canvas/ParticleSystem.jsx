@@ -84,8 +84,8 @@ export default function ParticleSystem({
     }
   }, [activeShape]);
 
-  useFrame((state) => {
-    const elapsed = state.clock.getElapsedTime();
+  useFrame(() => {
+    const elapsed = performance.now() * 0.001;
     const attr = pointsRef.current?.geometry?.attributes?.position;
     if (!attr) return;
 

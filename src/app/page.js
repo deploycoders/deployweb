@@ -1,6 +1,7 @@
 "use client";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
+import WorkSection from "@/components/WorkSection";
 import StackSection from "@/components/StackSection";
 import CTASection from "@/components/CTASection";
 import ContactSection from "@/components/ContactSection";
@@ -13,6 +14,8 @@ export default function Home() {
       <div className="relative z-20">
         <ServicesSection />
       </div>
+
+      <WorkSection />
 
       <div className="relative z-10 bg-[#09090b]">
         <StackSection />

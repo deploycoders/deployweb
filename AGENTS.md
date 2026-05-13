@@ -95,3 +95,10 @@ Para mantener “memoria viva” del proyecto, cada cambio relevante debería re
 - Se implementó bloqueo total de scroll/interacciones mientras el preloader está activo.
 - Se añadió transición del texto `DEPLOY` hacia la posición real del logo en navbar para continuidad visual.
 - Se sincronizó el inicio de animaciones de `HeroSection` y `Navbar` al evento `deploy:preloader-complete` para evitar que se consuman detrás del overlay.
+
+### 2026-05-13
+
+- Se implementó la sección `WorkSection` para mostrar proyectos en un layout split 50/50.
+- Se añadió un cursor personalizado con efecto de inversión cromática (`mix-blend-mode: difference`) al pasar sobre las imágenes de los proyectos.
+- Se generaron imágenes de alta calidad (Clinic AI y Agile Skills) para una presentación premium.
+- Se integraron animaciones suaves con GSAP (`useGSAP`) para el seguimiento del mouse y transiciones de hover.
