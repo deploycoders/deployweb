@@ -112,7 +112,7 @@ export default function ServicesSection() {
   );
 
   return (
-    <div ref={sectionRef} className="w-full bg-[#09090b]">
+    <div ref={sectionRef} id="services" className="w-full bg-[#09090b]">
       {/* VERSION MOBILE: Se muestra solo en pantallas pequeñas */}
       <section className="block lg:hidden py-20 px-6">
         <div className="mb-12">

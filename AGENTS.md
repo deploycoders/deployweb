@@ -102,3 +102,11 @@ Para mantener “memoria viva” del proyecto, cada cambio relevante debería re
 - Se añadió un cursor personalizado con efecto de inversión cromática (`mix-blend-mode: difference`) al pasar sobre las imágenes de los proyectos.
 - Se generaron imágenes de alta calidad (Clinic AI y Agile Skills) para una presentación premium.
 - Se integraron animaciones suaves con GSAP (`useGSAP`) para el seguimiento del mouse y transiciones de hover.
+
+### 2026-05-13 (Segunda sesión)
+
+- Se implementó el sistema de Case Studies dinámicos mediante rutas de Next.js (`/projects/[id]`).
+- Se creó un sistema de datos centralizado en `src/data/projects.js` para gestionar el contenido de los proyectos.
+- Se diseñó una interfaz premium para el detalle de proyectos, inspirada en Antimatter AI, con secciones de Overview, Desafío, Solución y Galería.
+- Se integraron animaciones de revelado por scroll (ScrollTrigger) y transiciones cinemáticas para la entrada de las páginas de detalle.
+- Se vincularon las tarjetas de la `WorkSection` con sus respectivas páginas de estudio de caso.

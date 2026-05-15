@@ -6,13 +6,16 @@ import Link from "next/link";
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef(null);
-  const items = ["Trabajos", "Servicios", "Nosotros", "Contacto"];
-
+  const items = [
+    { label: "Proyectos", href: "/#work" },
+    { label: "Servicios", href: "/#services" },
+    { label: "Tecnologías", href: "/#tecnologias" },
+    { label: "Contacto", href: "/#contact" },
+  ];
 
   // El estado inicial lo pone el HeroSection vía su master timeline.
   // useGSAP aquí solo sirve para el toggle del menú móvil.
   // (No disparamos animación de entrada propia — la coordina HeroSection)
-
 
   return (
     <nav
@@ -31,21 +34,24 @@ export const Navbar = () => {
         {/* Desktop Menu */}
         <div className="pointer-events-auto hidden items-center gap-8 lg:flex">
           {items.map((item) => (
-            <a
-              key={item}
-              href="#"
+            <Link
+              key={item.label}
+              href={item.href}
               className="nav-link text-sm font-medium tracking-wide text-zinc-400 transition-colors hover:text-white"
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
 
         {/* CTA Button */}
         <div className="nav-cta pointer-events-auto hidden items-center gap-4 lg:flex">
-          <button className="cursor-pointer rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white hover:text-black">
+          <Link
+            href="/#contact"
+            className="cursor-pointer rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white hover:text-black"
+          >
             Contáctanos
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -65,18 +71,22 @@ export const Navbar = () => {
       >
         <div className="flex flex-col gap-4 rounded-3xl border border-white/5 bg-black/80 p-6 backdrop-blur-xl">
           {items.map((item) => (
-            <a
-              key={item}
-              href="#"
+            <Link
+              key={item.label}
+              href={item.href}
               className="text-lg font-medium text-zinc-300 hover:text-white"
               onClick={() => setIsOpen(false)}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
-          <button className="mt-2 rounded-full bg-white py-3 font-bold text-black">
+          <Link
+            href="/#contact"
+            onClick={() => setIsOpen(false)}
+            className="mt-2 flex justify-center items-center rounded-full bg-white py-3 font-bold text-black"
+          >
             Despliega Tu Proyecto
-          </button>
+          </Link>
         </div>
       </div>
     </nav>

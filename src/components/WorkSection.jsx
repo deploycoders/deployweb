@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
+import Link from "next/link";
 
 // Registrar ScrollTrigger localmente para asegurar disponibilidad
 if (typeof window !== "undefined") {
@@ -12,37 +13,43 @@ if (typeof window !== "undefined") {
 
 const projects = [
   {
-    id: "01",
+    id: "clinixai",
+    displayId: "01",
     title: "Clinic AI",
     category: "Panel de Salud AI",
     image: "/projects/2.png",
   },
   {
-    id: "02",
+    id: "agileskills",
+    displayId: "02",
     title: "Agile Skills",
     category: "Plataforma E-learning",
     image: "/projects/1.png",
   },
   {
-    id: "03",
-    title: "Clinic AI",
-    category: "Panel de Salud AI",
+    id: "agileskills",
+    displayId: "03",
+    title: "Agile Skills",
+    category: "Plataforma E-learning",
     image: "/projects/1.png",
   },
   {
-    id: "04",
-    title: "Agile Skills",
-    category: "Plataforma E-learning",
-    image: "/projects/2.png",
-  },
-  {
-    id: "05",
+    id: "clinixai",
+    displayId: "04",
     title: "Clinic AI",
     category: "Panel de Salud AI",
     image: "/projects/2.png",
   },
   {
-    id: "06",
+    id: "clinixai",
+    displayId: "05",
+    title: "Clinic AI",
+    category: "Panel de Salud AI",
+    image: "/projects/2.png",
+  },
+  {
+    id: "agileskills",
+    displayId: "06",
     title: "Agile Skills",
     category: "Plataforma E-learning",
     image: "/projects/1.png",
@@ -146,16 +153,17 @@ export default function WorkSection() {
       {/* Contenedor de proyectos con Flex Wrap para permitir múltiples filas */}
       <div className="projects-container flex flex-wrap gap-y-12 gap-x-6 lg:gap-x-10 px-6 md:px-12 w-full">
         {projects.map((project, index) => (
-          <div
+          <Link
             key={`${project.id}-${index}`}
-            className="project-card relative w-full lg:w-[calc(50%-1.25rem)] group h-[60vh] md:h-[80vh] overflow-hidden rounded-3xl cursor-none border border-white/5"
+            href={`/projects/${project.id}`}
+            className="project-card relative w-full lg:w-[calc(50%-1.25rem)] group h-[60vh] md:h-[80vh] overflow-hidden rounded-3xl cursor-none border border-white/5 block"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >
             {/* Número del proyecto */}
             <div className="absolute top-8 left-8 z-20">
               <span className="text-xs font-mono text-white/40 tracking-[0.3em]">
-                {project.id}
+                {project.displayId}
               </span>
             </div>
 
@@ -185,7 +193,7 @@ export default function WorkSection() {
 
             {/* Línea decorativa que se expande al hover */}
             <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-white/30 group-hover:w-full transition-all duration-700 ease-in-out" />
-          </div>
+          </Link>
         ))}
       </div>
 
