@@ -14,6 +14,14 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+export const runtime = "edge";
+
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    id: project.id,
+  }));
+}
+
 export default function ProjectDetail() {
   const { id } = useParams();
   const router = useRouter();
