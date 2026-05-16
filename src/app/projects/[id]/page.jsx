@@ -16,12 +16,6 @@ if (typeof window !== "undefined") {
 
 export const runtime = "edge";
 
-export async function generateStaticParams() {
-  return projects.map((project) => ({
-    id: project.id,
-  }));
-}
-
 export default function ProjectDetail() {
   const { id } = useParams();
   const router = useRouter();
