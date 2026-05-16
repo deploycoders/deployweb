@@ -66,39 +66,65 @@ export default function ServicesSection() {
 
       // CONFIGURACIÓN DESKTOP (1024px en adelante)
       mm.add("(min-width: 1024px)", () => {
+        // Forzar un refresh para asegurar que el ancho se calcule bien
+        ScrollTrigger.refresh();
+
+        const track = pinRef.current;
+        if (!track) return;
+
+        const horizontalScrollLength = track.scrollWidth - window.innerWidth;
+
+        // 1. Animación de entrada para el título e intro (cuando la sección entra en vista)
+        gsap.fromTo(
+          ".services-intro > *",
+          { y: 100, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.2,
+            duration: 1.5,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%", // Se activa un poco antes
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+
+        // 2. Timeline del scroll horizontal (pinning)
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             pin: true,
             scrub: 1,
             start: "top top",
-            // El end calcula el ancho real del contenedor para que no se monte la siguiente sección
-            end: () =>
-              `+=${pinRef.current.scrollWidth - window.innerWidth + 200}`,
+            end: () => `+=${horizontalScrollLength + 1000}`, // Más espacio para scroll
             invalidateOnRefresh: true,
             anticipatePin: 1,
           },
         });
 
-        tl.to(pinRef.current, {
-          x: () => -(pinRef.current.scrollWidth - window.innerWidth),
+        tl.to(track, {
+          x: () => -horizontalScrollLength,
           ease: "none",
         });
 
-        // Animaciones de entrada para el contenido de las cartas
+        // 3. Animaciones de "elevación" para el contenido de las cartas
         SERVICES.forEach((_, i) => {
           gsap.fromTo(
             `.card-content-${i}`,
-            { opacity: 0, y: 40, filter: "blur(10px)" },
+            { opacity: 0, y: 120, filter: "blur(20px)" }, // Más desplazamiento vertical y blur
             {
               opacity: 1,
               y: 0,
               filter: "blur(0px)",
+              ease: "power2.out",
               scrollTrigger: {
                 trigger: `.card-${i}`,
                 containerAnimation: tl,
-                start: "left 80%",
-                end: "left 50%",
+                start: "left 95%", // Empieza a elevarse un poco antes
+                end: "left 40%",
                 scrub: true,
               },
             },
@@ -106,7 +132,10 @@ export default function ServicesSection() {
         });
       });
 
-      return () => mm.revert();
+      return () => {
+        mm.revert();
+        ScrollTrigger.getAll().forEach(t => t.kill());
+      };
     },
     { scope: sectionRef },
   );

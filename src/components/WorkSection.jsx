@@ -11,50 +11,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const projects = [
-  {
-    id: "clinixai",
-    displayId: "01",
-    title: "Clinic AI",
-    category: "Panel de Salud AI",
-    image: "/projects/2.png",
-  },
-  {
-    id: "agileskills",
-    displayId: "02",
-    title: "Agile Skills",
-    category: "Plataforma E-learning",
-    image: "/projects/1.png",
-  },
-  {
-    id: "agileskills",
-    displayId: "03",
-    title: "Agile Skills",
-    category: "Plataforma E-learning",
-    image: "/projects/1.png",
-  },
-  {
-    id: "clinixai",
-    displayId: "04",
-    title: "Clinic AI",
-    category: "Panel de Salud AI",
-    image: "/projects/2.png",
-  },
-  {
-    id: "clinixai",
-    displayId: "05",
-    title: "Clinic AI",
-    category: "Panel de Salud AI",
-    image: "/projects/2.png",
-  },
-  {
-    id: "agileskills",
-    displayId: "06",
-    title: "Agile Skills",
-    category: "Plataforma E-learning",
-    image: "/projects/1.png",
-  },
-];
+import { projects } from "@/data/projects";
 
 export default function WorkSection() {
   const container = useRef();
@@ -163,19 +120,20 @@ export default function WorkSection() {
             {/* Número del proyecto */}
             <div className="absolute top-8 left-8 z-20">
               <span className="text-xs font-mono text-white/40 tracking-[0.3em]">
-                {project.displayId}
+                {String(index + 1).padStart(2, "0")}
               </span>
             </div>
 
             {/* Contenedor de Imagen */}
             <div className="relative w-full h-full overflow-hidden">
               <Image
-                src={project.image}
+                src={project.heroImage}
                 alt={project.title}
                 fill
                 className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                 sizes="(max-width: 768px) 100vw, 50vw"
-                priority={index === 0}
+                priority={index < 2}
+                loading={index < 2 ? "eager" : "lazy"}
               />
               {/* Overlay degradado para profundidad */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />

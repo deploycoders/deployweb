@@ -25,8 +25,9 @@ export default function RootLayout({ children }) {
     <html
       lang="es"
       className={`${geistMono.variable} ${jakarta.variable} h-full antialiased dark`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-deep-dark-950 text-deep-dark-50 font-sans">
+      <body className="min-h-full flex flex-col bg-deep-dark-950 text-deep-dark-50 font-sans" suppressHydrationWarning>
         <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>

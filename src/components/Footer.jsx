@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { projects } from "@/data/projects";
 import Link from "next/link";
 
 export const Footer = () => {
@@ -122,29 +123,20 @@ export const Footer = () => {
               <h4 className="text-sm font-medium text-gray-500 mb-2">
                 Proyectos
               </h4>
+              {projects.map((project) => (
+                <Link
+                  key={project.id}
+                  href={`/projects/${project.id}`}
+                  className="text-sm text-gray-300 hover:text-white transition-colors"
+                >
+                  {project.title}
+                </Link>
+              ))}
               <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
+                href="/#work"
+                className="text-xs font-bold text-blue-400/80 hover:text-blue-400 uppercase tracking-widest pt-2 transition-colors"
               >
-                EVP
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                AFM
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                Rifas web
-              </Link>
-              <Link
-                href="#"
-                className="text-sm text-gray-300 hover:text-white transition-colors"
-              >
-                App
+                Ver todos ↗
               </Link>
             </div>
 

@@ -105,6 +105,7 @@ export default function ProjectDetail() {
             fill
             className="object-cover brightness-[0.4]"
             priority
+            loading="eager"
           />
         </div>
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
